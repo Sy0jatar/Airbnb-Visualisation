@@ -4,7 +4,7 @@ import streamlit as st
 
 # Display title and text
 st.title("Week 1 - Data and visualization")
-st.markdown("Here we can see the dataframe created during this weeks project.")
+st.markdown("Here we can see the dataframe created during this weeks project. Selected listings are with a price below 300 zloty per night.")
 
 # Read dataframe
 dataframe = pd.read_csv(
@@ -47,7 +47,8 @@ fig = px.scatter_mapbox(
     width=800,
     hover_name="Price",
     hover_data=["Meters from chosen location", "Location"],
-    labels={"To visit":"red", "Airbnb listing":"blue"}, 
+    labels={"color": "Locations"},
+    color_discrete_map= {"To visit":"blue", "Airbnb listing":"red"}, 
 )
 fig.update_geos(center=dict(lat=dataframe.iloc[0][2], lon=dataframe.iloc[0][3]))
 fig.update_layout(mapbox_style="stamen-terrain")
